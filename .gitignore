@@ -1,0 +1,7 @@
+# Compilati: si rigenerano con javac
+bin/
+*.class
+
+# Sistema
+.DS_Store
+Thumbs.db
