@@ -19,9 +19,21 @@ public class Listino {
         double prezzo5 = 6.0;
 
         System.out.println(piatto1 + " - " + prezzo1);
-        System.out.println(piatto2 + " - " + prezzi2)
+        System.out.println(piatto2 + " - " + prezzo2);
+        System.out.println(piatto3 + " - " + prezzo3);
+        System.out.println(piatto4 + " - " + prezzo4);
+        System.out.println(piatto5 + " - " + prezzo5);
 
+        double totale = prezzo1 + prezzo2 + prezzo3 + prezzo4 + prezzo5;        
+        System.out.println("Totale: " + totale);
+        
+        double media = totale / 5;
+        System.out.println("Media: " + media);
 
+        double sconto = totale * 10 / 100;
+        System.out.println("Totale Scontato: " + (totale - sconto));
+
+        System.out.println("4 Carbonara: " + (prezzo1 * 4));
 
     }
     
