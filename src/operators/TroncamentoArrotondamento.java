@@ -12,9 +12,6 @@ public class TroncamentoArrotondamento {
         double b = 5 / (double)0;
 
         System.out.println(b);
-
-
-
     }
     
 }
