@@ -5,3 +5,8 @@ bin/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# IDE IntelliJ / output
+.idea/
+*.iml
+out/
