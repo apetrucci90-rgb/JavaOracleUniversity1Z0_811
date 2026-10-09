@@ -59,21 +59,63 @@ public class Scorte {
         }
         System.out.println("totale = " + totale);
 
-        int max = scorte[0];
-
-            for (int i = 0; i < scorte.length; i++) {
-                if (scorte[i] > max) {
-                    max = scorte[i];
-            }
-        }
-        System.out.println("max = " + max);
 
         /*
-        - int max = scorte[0];
-            Parto assumendo che il massimo sia il primo elemento. Serve un punto
-            di partenza reale: non posso partire da 0, perchè se l'array avesse 
-            tutti valori negativi, 0 sarebbe sbagliato.
-             
+        Consegna
+        Trova il valore massimo e, insieme, la posizione (l'indice) in cui quel massimo
+         si trova. Stampa tutti e due su una riga sola (formato a tua scelta, 
+         es. massimo = ... indice = ...).
+        */
+
+        int max = scorte[0]; // 1
+        int indiceMax = 0; // 2
+
+        for (int i = 0; i < scorte.length; i++) { // 3
+            if (scorte[i] > max) { // 4
+                max = scorte[i]; // 5
+                indiceMax = i; // 6
+            }
+        }
+        System.out.println("massimo = " + max + " indice = " + indiceMax);
+
+        int min = scorte[0];
+        int indiceMin = 0;
+
+        for (int i = 0; i < scorte.length; i++) {
+            if (scorte[i] <= min) {
+                min = scorte[i];
+                indiceMin = i;
+            }
+        }
+        System.out.println("minimo = " + min + " indice = " + indiceMin);
+
+        /*
+        Consegna
+        Conta quanti articoli sono esauriti, cioè quante celle hanno valore uguale a 0, 
+        e stampa il conteggio.
+        */
+
+        int esauriti = 0; // 1
+
+        for (int i = 0; i < scorte.length; i++) { // 2
+            if (scorte[i] == 0) { // 3
+                esauriti = esauriti + 1; // 4
+            }
+        }
+        System.out.println("esauriti = " + esauriti); // 5
+        /*
+        1. Il contatore; parte da 0 perchè all'inizio non ho ancora contato nulla. 
+        È la differenza con massimo/minimo: lì il seme era un elemento reale (scorte[0])
+        perchè cercavo un valore già nell'array; qui misuro quanto volte accade una
+        cosa e all'inizio accade 0 volte.
+        2. Il solito scorrimento di tutto l'array. Condizione i < scorte.length: deve
+        passare su tutte le celle, da 0 a length - 1.
+        3. La domanda a ogni giro: "la cella corrente vale 0?". scorte[i] (il valore
+        di ogni cella); prende ogni i, quindi ogni valore nell'array-.
+        4. Solo quando la riga 3 è vera dice: "prendi il valore attuale di esauriti,
+        aggiungi 1, rimettilo dentro esauriti". Il contatore cresce di 1 per ogni 0
+        trovato (va bene anche esauriti++)
+        
         */
     }    
 }
