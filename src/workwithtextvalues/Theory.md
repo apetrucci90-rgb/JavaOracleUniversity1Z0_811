@@ -44,7 +44,7 @@ Avoid new String(...). Java keeps a shared area in memory called the String pool
 
 This sharing is only safe because of a key proprerty: Strings are IMMUTABLE. Once a String object exists, it's content can never be changed. Every method that seems to modify a String actualy return a brand-new String and leaves the original untouched. So I must reassign the result, or it is lost:
 
-String a = "magic";
+String s = "magic";
 s.toUpperCase(); // the new "MAGIC" is created, then thrown away -> s is still "magic"
 s = s.toUpperCase(); // now s points to the new object "MAGIC"
 
@@ -53,13 +53,13 @@ s = s.toUpperCase(); // now s points to the new object "MAGIC"
 Using String 
     t = "It's Magic!";
 
-- length() | how many characters | tlength() -> 11
+- length() | how many characters | t.length() -> 11
 - charAt(i) | the character at index  i | t.charAt(6) -> 'a'
 - indexOf(x) | first position of a char or substring, -1 if not found | t.indexOf('i') -> 8
                 | t.indexOf('z') -> -1
 - substring(a, b) | the piece from a included to b excluded | t.subsstring(3, 7) -> "s Ma"
 - substring(a) | from a to the end | t.substring(8) -> "ic!"
-- concat(x) / + | join two Strings | "It's" + "Magic!" -> "It'sMagic"
+- concat(x) / + | join two Strings | "It's" + "Magic!" -> "It'sMagic!"
 - toUpperCase()
   toLowerCase() | un upper/lower copy | to.toUpperCase() -> "IT'S MAGIC!"
 
