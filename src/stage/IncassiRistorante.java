@@ -56,5 +56,40 @@ public class IncassiRistorante {
         System.out.println("Incasso totale: " + incassoTotale);
         System.out.println("Record d'incasso: " + recordIncasso);
         System.out.println("Turni a zero: " + turniChiusi);
+
+        /*
+        CONSEGNA: Per ogni singolo giorno, stampa 
+        l’incasso di quel giorno (la somma dei suoi due
+        turni), con l’etichetta del giorno. → qui 
+        tieni fermo il giorno e scorri i 
+        turni: ragioni “per riga”.
+        Stabilisci quale turno rende di più nel 
+        complesso: somma su tutti i giorni gli incassi 
+        del turno 0 (es. pranzo) e, a parte, quelli del 
+        turno 1 (es. cena), poi stampa quale dei due 
+        vince. → qui tieni fermo il turno e scorri i 
+        giorni: ragioni “per colonna”.
+        */
+       for (int giorno = 0; giorno < incassi.length; giorno++) {
+        int incassoGiorno = 0;
+        for (int turno = 0; turno < incassi[giorno].length;
+            turno++) {
+                incassoGiorno = incassoGiorno + incassi[giorno][turno];
+            }
+            System.out.println("Giorno " + giorno + ": " + incassoGiorno);        
+       }
+
+       int totTurno0 = 0;
+       int totTurno1 = 0;
+
+       for (int giorno = 0; giorno < incassi.length; giorno++) {
+        totTurno0 = totTurno0 + incassi[giorno][0];
+        totTurno1 = totTurno1 + incassi[giorno][1];
+       }
+
+       System.out.println("Turno 0: " + totTurno0);
+       System.out.println("Turno 1: " + totTurno1);
+       System.out.println(totTurno0 > totTurno1 ? " " +
+       "Vince il turno 0" : "Vince il turno 1");
     }    
 }
