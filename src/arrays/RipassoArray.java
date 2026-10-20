@@ -241,8 +241,117 @@ public class RipassoArray {
 
      System.out.println(Arrays.deepToString(m)); // [[1, 2], [3, 4]]    <- giusto
 
-     /*
-     TRAPPOLA 1
-     */
+
+    /*
+    TAPPA 8 - java.util.Arrays: sort, fill, equals
+    ----------------------------------------------
+    Tre metodi pronti della classe Arrays (serve import in cima)
+    
+    Arrays.sort(a): ordina l'array in modo crescente SUL POSTO 
+    (cambia 'a' stesso). Ritorna void: si scrive da solo, mai a = Arrays.sort(a)
+
+    Arrays.fill(a, v): mette lo stesso valore v in TUTTE le caselle
+
+    Arrays.equals(a, b): confronta i VALORI (true se stessi dati,
+    stesso ordine). ATTENZIONE == confronta i RIFERIMENTI, non il
+    contenuto -> due array diversi con valori uguali danno == false.
+    Per i dati usa equals.
+    */
+
+    int[] voti = {7, 3, 9, 5};
+    int[] ordinati = Arrays.copyOf(voti, voti.length);
+    Arrays.sort(ordinati);
+
+   System.out.println("voti = " + Arrays.toString(voti)); // [7, 3, 9, 5]
+   System.out.println("ordinati = " + Arrays.toString(ordinati)); // [3, 5, 7, 9]
+
+   int[] azzerato = new int[4];
+   Arrays.fill(azzerato, 0);
+   System.out.println("azzerato = " + Arrays.toString(azzerato)); // [10, 10, 10, 10]
+
+   System.out.println("equals = " + Arrays.equals(voti, ordinati)); // false
+
+   System.out.println("==  = " + (voti == ordinati)); // false
+
+   /*
+   TAPPA 9 - ArrayList: la lista elastica
+   --------------------------------------
+   L'array ha dimensione FISSA; ArrayList cresce e si accorcia mentre il 
+   programma gira. È un oggetto: tutto col punto. Serve importare
+   import java.util.ArrayList.
+   Si dichiara coi tipi OGGETTO fra < >: ArrayList<Integer>, ArrayList<String>
+
+   - add(x) aggiunge in fondo
+   - get(i) legge l'elemento  i (NON lista[i])
+   - set(i, x) sostituisce l'elemento i (gli altri scalano)
+   - remove(i)  toglie l'elemento i
+    - size()  quanti elementi (NON .length)
+    - contains(x) true/false se c'è
+   */
+
+    ArrayList<String> spesa = new ArrayList<>();
+    spesa.add("pane");
+    spesa.add("latte");
+    spesa.add("uova");
+
+    System.out.println("Lista della spesa: " + spesa + " | Lunghezza spesa: " + spesa.size());
+    spesa.set(1, "burro");
+    spesa.remove(0);
+
+    System.out.println("Nuova lista della spesa: " + spesa);
+    System.out.println("c'è uova? " + spesa.contains("uova"));
+
+    /*
+    TAPPA 10 - scorrere un ArrayList e la trappola della modifica
+    -------------------------------------------------------------
+    Un ArrayList si scorre col for-each come un array. MA se togli
+    (o aggiungi) elementi MENTRE lo stai scorrendo col for-each, 
+    Java lancia ConcurrentModificationException. Per cancellare
+    scorrendo su usa un altro modo (for con indice all'indietro,
+      oppure removIf)
+    */
+
+    // Parto da una lista di numeri. <Integer> per nelle liste no int
+    ArrayList<Integer> numeriList = new ArrayList<>();
+    numeriList.add(10);
+    numeriList.add(25);
+    numeriList.add(30);
+    numeriList.add(45);
+
+    // (A) lettura col for-each: va benissimo quando devo solo LEGGERE.
+    // 'n' è una copia del valore di turno, come nell'array.
+    for (int n : numeriList) {
+        System.out.println("valore = " + n);
+    }
+    /*
+    (B) LA TRAPPOLA (resta commentata, NON eseguirla);
+    for (int n : numeriList) {
+    if (n % 2 == 0) numeriList.remove(Integer.valueOf(n));
+    }
+    -> ConcurrentModificationExcpetion: il for-each perde il conto se la
+    lista cambia mentre la scorro. VIETATO rimuovere così.
+
+    (C) IL MODO GIUSTO per cancellare scorrendo: for con indice ALL'INDIETRO.
+    Da size()-1 fino a 0: se tolgo l'elemento i, scalano quelli DOPO,
+    che ho già visto -> non salto nessun indice
+    */
+
+    for (int i = numeriList.size() - 1; i >= 0; i--) {
+        if (numeriList.get(i) % 2 == 0) {
+            numeriList.remove(i); // lo tolgo per INDICE
+        }
+    }
+    System.out.println("solo dispari = " + numeriList); // restano i dispari
+
+    // (D) LA SCORCIATOIA: removeIf fa lo stesso in una riga. Lista nuova
+    // perché sopra ho già tolto i pari da numeriList.
+
+    ArrayList<Integer> altri = new ArrayList<>();
+    altri.add(1); altri.add(2); altri.add(3); altri.add(4);
+    altri.removeIf(x -> x % 2 == 0);
+    System.out.println("removeIf = " + altri); // [1, 3]
+
+
+
     }
 }
