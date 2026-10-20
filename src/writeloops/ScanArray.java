@@ -39,6 +39,107 @@ public class ScanArray {
             }    
         }
        }
+       
+       /*
+       ESERCIZIO
+       continue, contatore, break per soglia)
+       Scorri gli 8 incassi; salta gli storni (negativi) 
+       senza contarli; conta ogni giornata reale; alla 
+       prima giornata ≥ 250 dichiara il record con la 
+       sua posizione e fermati; infine stampa quante 
+       giornate reali hai esaminato.
+       */
+       int[] incassi = {120, 45, -30, 80, 260, -10, 300, 95};
+       int soglia = 250;
+       int giornateReali = 0;
+
+       for (int i = 0; i < incassi.length; i++) {
+        // storno contabile: salto, non lo conto
+        if (incassi[i] < 0) {
+            continue;
+        }
+        // è una giornata reale, la devo contare
+        giornateReali++;
+
+        // prima giornata record trovata:  dichiaro e 
+        // fermo tutto
+        if (incassi[i] >= soglia) {
+            System.out.println("Giornata record alla posizione " + 
+            i + " (incasso " + incassi[i] + ")");
+            // mi basta il primo che va bene e sopra 250
+            break;
+        }
+       }
+       System.out.println("Giornate reali esaminate: " + 
+       giornateReali);
+
+       /*
+       Cerco il max ed il min di incassi
+       */
+
+       int max = incassi[0];
+       int indiceMax = 0;
+
+       for (int i = 0; i < incassi.length; i++) {
+        if(incassi[i] > max) {
+            max = incassi[i];
+            indiceMax = i;
+        }
+       }
+
+       System.out.println("massimo: " + max + " " +
+            "posizione: " + indiceMax);
+        int min = incassi[0];
+        int indiceMin = 0;
+
+        for(int i = 0; i < incassi.length; i++) {
+            if (incassi[i] < min) {
+                min = incassi[i];
+                indiceMin = i;
+            }
+        }
+        System.out.println("minimo: " + min + " " +
+            "posizione: " + indiceMin);
+
+        /*
+        ESERCIZIO
+        Fai un piccolo bilancio sugli stessi 8 incassi 
+        di prima. 
+        Una giornata conta come reale solo se il suo 
+        incasso non è negativo: gli storni (i valori 
+        sotto zero) vanno ignorati, esattamente come li 
+        saltavi nell’esercizio precedente. 
+        Scorrendo l’array una volta sola, somma gli 
+        incassi di tutte le giornate reali e, nello 
+        stesso giro, tieni il conto di quante sono. 
+        Quando il ciclo è finito, calcola la media 
+        dividendo quel totale per il numero di giornate 
+        reali (facendo attenzione a non perdere i decimali) 
+        e calcola la forbice, cioè la distanza tra l’incasso 
+        più alto e quello più basso che hai già trovato poco 
+        sopra. 
+        Alla fine stampi quattro righe: il totale, il numero 
+        di giornate reali, la media e la forbice.
+        */
+
+        int totIncassiReali = 0;
+        int totGiornate = 0;
+
+        for (int i = 0; i < incassi.length; i++) {
+            if (incassi[i] < 0) {
+                continue;
+            }
+            totIncassiReali = totIncassiReali + incassi[i];
+            totGiornate++;
+        }
+
+        double mediaGiornaliera = totIncassiReali / (double) totGiornate;
+        int forbice = max - min;
+
+        System.out.println("Totale incassi reali: " + totIncassiReali);
+        System.out.println("Totale giornate: " + totGiornate);
+        System.out.println("Media per giornata reale: " + mediaGiornaliera);
+        System.out.println("Forbice (max - min): " + forbice);
     }
 }
 
