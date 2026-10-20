@@ -149,7 +149,103 @@ public class RipassoArray3 {
         // PUNTO 5 - ter
         
         int soglia = 2;
+        int quante = 0;
+        for (int i = 0; i < scorte.length; i++) {
+            if (scorte[i] < soglia) {
+                quante = quante + 1;
+            }
+        }
+        System.out.println("scorte minori di due: " + quante);
+
+        // PUNTO 6 - ArrayList completo
+
+        ArrayList<String> spesa = new ArrayList<>();
+        spesa.add("Latte");
+        spesa.add("Uova");
+        spesa.add("Pollo");
+        spesa.add("Tacchino");
+        
+        spesa.remove("Tacchino");
         
 
+        System.out.println("lista completa = " + spesa + " | totale elementi = "
+            + spesa.size());
+        System.out.println("c'è il Prosciutto Crudo? " + spesa.contains("Prosciutto Crudo"));
+        
+
+        //PUNTO 7: removeIf con lambda
+        /*
+        removeIf toglie in un colpo solo tutti gli elementi che soddisfano
+        una condizione, senza scrivere il for a mano
+        */
+
+        ArrayList<Integer> quantita = new ArrayList<>();
+        quantita.add(1);
+        quantita.add(3);
+        quantita.add(16);
+        quantita.add(-4);
+        quantita.add(0);
+
+        System.out.println("quantità = " + quantita);
+
+        quantita.removeIf(x -> x < 0); // x -> x < 0 è una lambda
+        /*
+        Lambda è una mini funzione scritta sul posto, senza nome. 
+        Serve per dire a removeIf quale condizione usare. Si legge in
+        tre pezzi: 
+        1) x il parametro: ogni elemento della lista, uno alla volta; in
+            questo caso indica ogni numero di quantita.
+        2) -> la freccia: separa "l'ingresso" da "cosa ne faccio"; tale che,
+            diventa
+        3) x < 0 il corpo: una condizione che da true o false. Qui si
+            chiede se x è negativo. Significa: preso un elemento x,
+            restituisci se x < 0 è vero. 
+        E removeIf lo applica ad ogni elemento: dove la lambda dà true, toglie
+
+
+        COS'È UNA LAMBDA IN GENERALE
+        Una lambda è una funzione usa e getta, scritta in una riga, senza
+        darle un nome. Esiste perchè a removeIf devo passare una regola:
+        invece di scrivere un metodo separato da qualche parte, gli 
+        consegno una regola sul momento in forma compatta.
+
+        FORMA GENERALE: parametro -> cosa restituisce
+        Il nome x è libero, potrebbe essere n -> n < 0
+
+        */
+        System.out.println("nuova quantità = " + quantita);
+
+        ArrayList<String> nomiLista = new ArrayList<>();
+        nomiLista.add("Andrea");
+        nomiLista.add("Eja");
+        nomiLista.add("Stephanie");
+        nomiLista.add("Steve");
+        nomiLista.add("Sharon");
+        nomiLista.add("Al");
+
+        System.out.println("Lista nomi: " + nomiLista);
+
+        nomiLista.removeIf(l -> l.length() < 4);
+
+        System.out.println("Lista nomi aggiornata: "  + nomiLista);
+
+        // PUNTO 7 - ter
+
+        ArrayList<Integer> numeri = new ArrayList<>();
+        numeri.add(3); numeri.add(4); numeri.add(9);
+        numeri.add(16); numeri.add(-7);
+
+        System.out.println("Lista numeri: " + numeri);
+        
+        numeri.removeIf(x -> x % 2 == 0);
+        System.out.println("Lista aggiornata: " + numeri);
+
+        // PUNTO 8 - la trappola del for-each (è una copia)
+
+        for (int i = 0; i < temperature.length; i++) {
+            temperature[i] = temperature[i] * 2;
+        }
+        System.out.println("Temperature dopo = " + Arrays.toString(temperature));
+    
     }   
 }
