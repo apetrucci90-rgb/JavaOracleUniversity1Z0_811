@@ -81,6 +81,75 @@ public class RipassoArray3 {
         System.out.println("nomi = " + Arrays.toString(nomi));
         System.out.println("nomi ordinati = " + Arrays.toString(nomiOrdinati));
 
-        // PUNTO 5 
-    }
+        // PUNTO 5 Ricerca lineare (obiettivo, non sintassi)
+        /*
+        COSA: voglio sapere SE un certo valore esiste nell'
+        array scorte e, se c'è, a QUALE indice si trova.
+        COME: scorro scorte dall'inizio alla fine e confronto
+        ogni cellla con il valore cercato. Mi servono due 
+        variabili dichiarate FUORI dal ciclo: una bandiera
+        booleana (parte da false, diventa true appena incontro
+        il valore) e la posizione (parte da -1, diventa l'indice
+        quando lo trovo). Appena lo trovo esco col break. 
+        */
+
+        int cercato = 9;
+        boolean trovato = false;
+        int posizione = - 1;
+
+        for (int i = 0; i < scorte.length; i++) {
+            if (scorte[i] == cercato) {
+                trovato = true;
+                posizione = i;
+                break;
+            }
+        }
+        if (trovato) {
+            System.out.println(cercato + " trovato " +
+             "all'indice " + posizione);
+        } else {
+            System.out.println(cercato + " non c'è nell'array");
+        }
+
+        // PUNTO 5 - bis
+        /* 
+                // PUNTO 5 - bis: ricerca di un nome (String)
+        
+        CONSEGNA: cerca un nome dentro l'array nomi (String[]).
+        Stesso schema del PUNTO 5: scorro una volta, bandiera booleana
+        + posizione a -1, mi fermo appena lo trovo. DOPO il ciclo stampo
+        "trovato all'indice N" oppure "non presente".
+        Provo due volte: un nome che c'è (es. "anna") e uno che non c'è
+        (es. "mario").
+
+        TRAPPOLA: le String NON si confrontano con == (confronta i
+        riferimenti, non il testo). Per confrontare il contenuto uso
+        il metodo .equals() -> differenza vista alla TAPPA 8.
+        */
+
+        String cercatoNome = "alessia";
+        boolean trovatoNome = false;
+        int posizioneNome = - 1;
+
+        for (int i = 0; i < nomi.length; i++) {
+            if (nomi[i].equals(cercatoNome)) {
+                // .equals confronta il testo
+                trovatoNome = true;
+                posizioneNome = i;
+                break;
+            }
+        }
+        if (trovatoNome) {
+            System.out.println(cercatoNome + " trovato" +
+                " all'indice " + posizioneNome);
+        } else {
+            System.out.println(cercatoNome + " non presente");
+        }
+
+        // PUNTO 5 - ter
+        
+        int soglia = 2;
+        
+
+    }   
 }
