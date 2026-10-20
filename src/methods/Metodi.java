@@ -27,6 +27,16 @@ public class Metodi {
         
         stampaDoppio(5);
         stampaDoppio(10);
+
+        System.out.println("Il quadrato di 4 è: " + quadrato(4));
+        System.out.println("Il quadrato di 14 è: " + quadrato(14));
+
+        int n = 5;
+        raddoppia(n);
+        System.out.println("fuori, n = " + n);
+
+        int soldi = 100;
+        azzera(soldi);
     }
     /*
     - static -> posso chiamarlo dal main senza creare oggetti;
@@ -53,5 +63,16 @@ public class Metodi {
     static void stampaDoppio(int numero) {
         System.out.println("Il doppio di " + numero + " = " + (numero * 2));
 
+    }
+    static int quadrato(int numero) {
+        return numero * numero;
+    }
+    static void raddoppia(int x) {
+        x = x * 2;
+        System.out.println("dentro il metodo x = " + x);
+    }
+    static void azzera(int x) {
+        x = 0;
+        System.out.println("dentro: x = " + x);
     }  
 }
