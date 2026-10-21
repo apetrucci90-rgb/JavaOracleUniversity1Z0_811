@@ -201,6 +201,40 @@ ESEMPIO: un carrello a cui aggiungo articoli, tolgo articoli e chiedo il totale.
 REGOLA SPICCIA: dato che gira fra più metodi -> campo di una classe. Dato che entra ed esce da un metodo solo -> parametro.
 
 
+============================
+MEMORY: STACK & HEAP        [sezione aggiunta da Claude il 21/10]
+============================
+
+Java keeps data in two areas. Which one a variable uses explains WHY
+pass-by-value behaves the way it does.
+
+- STACK: local variables and parameters. Fast, ordered. Every method call
+  gets its own frame; when the method ends, its frame (and its locals) is
+  thrown away -> that is WHY parameters live only during the call (scope).
+- HEAP: objects and arrays. They live here until nobody points to them.
+
+What sits inside a variable:
+- primitive (the 8: byte short int long float double char boolean): the box
+  on the STACK holds the VALUE itself (e.g. 1000).
+- reference (array, String, any object): the box on the STACK holds an
+  ADDRESS; the real object lives on the HEAP.
+
+Re-reading the exercises with these glasses:
+- Es.4 (int): soldi and s are two separate boxes on the stack, each with its
+  own number -> changing s does not touch soldi -> outside stays 1000.
+- Es.5 (array): voti and a are two boxes on the stack but hold the SAME
+  address -> both point to ONE array on the heap -> a[0] = 0 changes the real
+  array -> voti[0] sees 0.
+
+GARBAGE COLLECTOR: on the heap, an object with no reference left becomes
+garbage and Java frees it automatically. In C/C++ you free memory by hand;
+in Java the JVM does it for you.
+
+ONE LINE: stack = local variables (values and addresses); heap = the real
+objects. Pass-by-value = copy what is in the stack box: either the number,
+or the address.
+
+
 
 
 

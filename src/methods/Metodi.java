@@ -46,6 +46,7 @@ public class Metodi {
         gli argomenti al momento della chiamata (3->a, 4->b);
      - return a + b; -> calcola e ridà il valore, poi esce.
     */
+    // CONSEGNA [Claude]: DOMANDA (int) - ridà la somma di due interi (a + b).
     static int sum(int a, int b) {
         return a + b;
     }
@@ -56,21 +57,26 @@ public class Metodi {
     ritorno boolean (true/false)
     return a > b; il confronto è già un valore vero/falso, lo ridai diretto
     */
+    // CONSEGNA [Claude]: DOMANDA (boolean) - true se a è maggiore di b.
     static boolean isMaggiore(int a, int b) {
         return a > b;
     
     }
+    // CONSEGNA [Claude]: COMANDO (void) - stampa il doppio del numero ricevuto.
     static void stampaDoppio(int numero) {
         System.out.println("Il doppio di " + numero + " = " + (numero * 2));
 
     }
+    // CONSEGNA [Claude]: DOMANDA (int) - ridà il quadrato del numero (numero * numero).
     static int quadrato(int numero) {
         return numero * numero;
     }
+    // CONSEGNA [Claude]: PASS-BY-VALUE (demo) - raddoppia la COPIA x; fuori n NON cambia.
     static void raddoppia(int x) {
         x = x * 2;
         System.out.println("dentro il metodo x = " + x);
     }
+    // CONSEGNA [Claude]: PASS-BY-VALUE (demo) - azzera la COPIA x; fuori soldi resta 100.
     static void azzera(int x) {
         x = 0;
         System.out.println("dentro: x = " + x);
