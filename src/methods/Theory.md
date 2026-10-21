@@ -94,11 +94,98 @@ Changing ONLY the return type is NOT enough and is a compile error (same signatu
 - A name inside a method does not clash with the same name in another
     method: separate scopes.
 
+8.1 DEEP DIVE: METHODS
 
+1. WHY METHODS EXIST
 
+A program grows by repeating logic. Repetition is the enemy: the same
+rule written in many places must be changed in many places, and one
+forgotten copy becomes a bug. A method lets me write a rule ONCE,
+gave it a name, and reuse it by calling it. FOUR paysoff:
+    1. DRY (Don't Repeat Yourself): the logic live in one place.
+    2. Single source of truth: change it once, every caller gets
+    the change.
+    3. Naming: conIva(10) reads better than 10 * 1.22; code explains itself.
+    4. Abstraction: the caller needs the WHAT, not the HOW.
 
+2. A METHOD IS A CONTRACT
 
+Reading only the first line (the "header") I already know how to use it:
+    static double conIva(double prezzo)
+    - it needs one double (the price) -> INPUT
+    - it gives back a double -> OUTPUT
+    - its name says what it does -> INTENT
 
+The body is the private part; the header is the public promise. Good 
+methods have an honest header: name + parameters + return type 
+tell the truth about the work.
+
+3. THE CALL, STEP BY STEP   
+
+    int r = cubo(4);
+
+    1. the argument 4 is evaluated.
+    2. a fresh parameter boc c is created and 4 is COPIED into it.
+    3. the body runs with x = 4.
+    4. return hands a value back AND ends the method immediately.
+    5. the returned value replaces the call expression: r becomes 64.
+
+Arguments bind to parameters BY POSITION and must fit declared types.
+
+4. return SEMANTICS
+
+- return does two things: produce the value and EXIT now. Code after a 
+    reached return does not run
+- A value method must return on EVERY path, or: "missing return statement"
+- void returns nothing; a bare "return;" just exits early
+
+5. PASS-BY-VALUE, PRECISELY
+
+Java is ALWAYS pass-by-value: the method gets a COPY of the argument. What differs is WHAT sits in the variable:
+- primitive (the 8: byte short int long float double char boolean): the BOX holds the VALUE itself -> the copy is indipendent -> changing the parameters does NOT affect the caller. 
+- reference (array, String, any object): the box holds an ADDRESS that points to an object living elsewhere. The copy is a copy of the ADDRESS -> both names point to the SAME object.
+
+primitive = copy the number;
+
+reference = copy the address of the house, not the house.
+
+6. SIGNATURE AND OVERLOADING
+
+- SIGNATURE = method name + parameters types (NOT the return type)
+- Overloading = same name, DIFFERENT parameter lists, same class; Java picks the match by the arguments.
+- Changing ONLY the return type keeps the same signature  -> compile error
+
+7. COMMON EXAM TRAPS    
+
+ - using a void method as a value: int x = print(...) -> error.
+ - a value method missing a return on some path -> "missing return".
+ - two methods differing only by return type -> not overloading, error.
+ - assuming an int argument changes after the call -> it never does.
+ - confusing arguments (passed value) with parameters (receiving box).
+ - a local variable used before assignment -> compile error.
+
+============================
+A&Q
+============================
+
+1. Come scelgo quali metodi creare.
+
+Non li decido a tavolino, li scopro mentre guardo il problema. Tre segnali che qui serve un metodo:
+    1) Ripetizione - sto per copiare incollare un pezzo, meglio farne un metodo
+    2) Un commento che spiega un blocco - se devo scrivere // calcola il prezzo con IVA sopre 3 righe, quelle tre righe sono un metodo di nome conIva
+    3) Un passo con un nome - se riesci a dire a voce "qui verifico il PIN", quello è verificaPin
+
+UN METODO = UN LAVORO SOLO (una responsabilità); se nel nome mi viene un e (salvaEStampa) sono due metodi.
+
+Come li scrivo bene:
+- nome = verbo che dice cosa fa (verificaPin, calcolaResto).
+- corto = se non ci sta sotto gli occhi, probabilmente fa troppo.
+- pochi parametri (0-3): tanti parametri = il metodo sa troppe cose.
+- domanda o comando: decido return o void
+
+2. Li divido in CLASSI? Sì, ecco il criterio
+
+Finora ho messo tutto in una classe con metodi static. In un programma vero la domanda diventa: questi metodi lavorano sugli stessi dati?
 
 
 
