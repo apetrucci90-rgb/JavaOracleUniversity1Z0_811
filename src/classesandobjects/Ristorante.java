@@ -28,6 +28,9 @@ public class Ristorante {
         p3.prezzo = 99.0;
 
         p1.descrivi();
+        
+        Piatto p4 = new Piatto();
+        p4.descrivi(); // null - 0.0 euro - vegano? false
 
     }
     
