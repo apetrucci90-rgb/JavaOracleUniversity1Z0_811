@@ -187,6 +187,19 @@ Come li scrivo bene:
 
 Finora ho messo tutto in una classe con metodi static. In un programma vero la domanda diventa: questi metodi lavorano sugli stessi dati?
 
+La risposta dipende da chi possiede il dato fra una chiamata e l'altra.
+Due casi:
+
+1) Metodo che prende input e ridà output, senza ricordare niente = distributore automatico. 
+sum, isPari; conIva sono così : dato dentro -> risultato fuori -> dimenticato. Restano metodi static, NON serve creare una nuova classe.
+2) Più metodi che leggono e scrivono lo STESSO dato = quel dato vuole diventare una classe, Il dato condiviso diventa un campo (lo stato); i metodi smettono di essere static e operano su quell'oggetto.
+
+Il segnale pratico: se per non perdere un dato devo ripassarlo dentro e fuori a ogni metodo (passo saldo, torno saldo, ripasso saldo, ...), queln dato non è di passaggio: è lo stato di una classe.
+
+ESEMPIO: un carrello a cui aggiungo articoli, tolgo articoli e chiedo il totale. I tre metodi toccano la stessa lista -> la lista è un campo, carrello è la classe. Invece conIva(prezzo) prende un prezzo e ridà un prezzo: niente da ricordare, resta static.
+
+REGOLA SPICCIA: dato che gira fra più metodi -> campo di una classe. Dato che entra ed esce da un metodo solo -> parametro.
+
 
 
 
