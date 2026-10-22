@@ -34,6 +34,11 @@ public class Esercizi1 {
         Cuoco c = new Cuoco();
         c.setNome("Andrea");
         System.out.println(c.getNome());
+
+        c.setValutazione(8); 
+        System.out.println("Valutazione: " + c.getValutazione());
+        c.setValutazione(15);
+        System.out.println("Valutazione: " + c.getValutazione());
     }
 }
 
@@ -51,7 +56,17 @@ class Cuoco {
     public void setNome(Strign nome) { this.nome = nome; }
     */
     private String nome; // campo
+    private int valutazione; 
     
     public String getNome() { return nome; } // il metodo
     public void setNome(String nome) {  this.nome = nome; }
+    public void setValutazione(int valutazione) {
+        if (valutazione >= 0 && valutazione <= 10) {
+            this.valutazione = valutazione;
+        } else {
+            System.out.println("Valutazione " + valutazione +
+                " fuori range 0-10: rifiutata");    
+        }
+    }
+    public int getValutazione() { return valutazione;}
 }
