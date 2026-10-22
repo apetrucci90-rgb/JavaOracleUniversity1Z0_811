@@ -32,6 +32,16 @@ public class Ristorante {
         Piatto p4 = new Piatto();
         p4.descrivi(); // null - 0.0 euro - vegano? false
 
+        /*
+        A prescindere dalla forma, getter e setter seguono il camel case,
+        quindi anche se una variabile inizia con la lettera minuscola, 
+        si scrivono con la lettera maiuscola dopo get o set.
+        
+        Getter/setter : get/set/is + Campo (prima lettera maiuscola).
+        Il campo resta minuscolo; la maiuscolo MARCA il confine (camelCase)
+        */
+        System.out.println("Prezzo di p1: " + p1.getPrezzo());
+
     }
     
 }

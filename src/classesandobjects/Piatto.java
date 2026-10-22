@@ -11,4 +11,7 @@ public class Piatto {
     boolean isCaro() {
         return prezzo > 20;
     }
+    double getPrezzo() {
+        return Math.round(prezzo * 100) / 100.0;
+    }
 }

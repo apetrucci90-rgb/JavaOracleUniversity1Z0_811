@@ -40,57 +40,53 @@ Piatto p2 = new Piatto(); // another object, indipendent data
 - Its job: INITIALIZE the attributes of the new object.
 - Every class gets a DEFAULT (no-parameter) constructor for free if  I write none. 
 
-<!-- sezioni 5-8 scritte da Claude il 21/10 -->
-
 5. REFERENCES AND null
 
-- new returns a REFERENCE to the object; the variable holds it (a logical
-  pointer; the JVM hides the real address).
-- Piatto p3 = p1;  -> NO new -> p3 and p1 are the SAME object (two names,
-  one object). Changing via one is seen via the other (like arrays).
-- null = a reference that points to NO object. Using it (p.descrivi())
-  throws NullPointerException. Guard it: if (p != null) { ... }.
-- A LOCAL reference has no default: "Piatto q; q.descrivi();" does NOT
-  compile ("might not have been initialized"). Write "Piatto q = null;".
+- new returs a REFERENCE to the object; the variable holds it (a logical pointer; the JVM hides the real address).
+- Piatto p3 = p1; -> NO new -> p3 and p1 are the SAME object (two names, one object). Changing via one is seen via the other. (like arrays)
+- null = a reference that points to NO object. Using it (p.descrivi()) throws NullPointExcepetion. Guard it: if (p != null) {...}.
+- A LOCAL reference has no default: "Piatto q; q.descrivi();" does not compile ("might not have been initialized"). Write "Piatto q = null;".
 
 6. DEFAULT VALUES OF FIELDS
 
 Fields (instance variables) are auto-initialized; local variables are NOT.
-- numeric (int, double, char...) -> 0 / 0.0
+- numeric -> 0, 0.0
 - boolean -> false
-- object types (String...) -> null
-I can set my own default in the declaration: String nome = "Senza nome";
+- object type -> null
+I can set my own default in the declaration
 
 7. ACCESSING FIELDS VIA METHODS: getters and setters
 
-Instead of touching a field directly (p1.prezzo = -5, no control), go
-through methods that add logic (validate, transform).
-Convention for a field "something":
-- getSomething() -> returns the field (ACCESSOR / getter).
-  For a boolean, often isSomething().
-- setSomething(value) -> assigns the field (MUTATOR / setter), can validate.
-
-    void setPrezzo(double prezzo) { this.prezzo = (prezzo < 0) ? 0 : prezzo; }
-    double getPrezzo() { return prezzo; }
+Instead of touching a field directly, go through methods that add logic (validate, transform). Convention for a field "something":
+- getSomething() -> return the field (ACCESSOR / getter). For a boolean, often isSomething().
+- setSomething(value) -> assign the field (MUTATOR / setter), can validate.
 
 8. SHADOWING AND this
 
-- If a parameter/local has the SAME name as a field, inside the method only
-  the local is visible: it SHADOWS the field.
-    void setPrezzo(double prezzo) { prezzo = prezzo; } // assigns the param
-    to itself, the FIELD is untouched -> bug (compiles, does nothing).
-- this = a reference to the CURRENT object (the one the method was called
-  on: in p1.setPrezzo(20), this == p1).
+- If a parameter/local has the SAME name as a field, inside the method only the local is visible: it SHADOWS the field.
+- this = a reference to the CURRENT object
 - this.prezzo = the FIELD;  prezzo (bare) = the PARAMETER.
   this.prezzo = prezzo;  -> field = parameter. Fixes the shadowing.
-- this is optional when there is no name clash (return prezzo; is the same
-  as return this.prezzo;).. REFERENCES AND null
+- this is optional when there is no name clash (return prezzo; == return
+  this.prezzo;).
 
+9. REUSING METHOD LOGIC (DRY)
 
+- Duplicated logic is BAD practice: if the same check/calculation sits in two
+  methods, extract it into ONE method and call it from both.
+- Fix the rule once (not in every copy) and the intent gets a name.
 
+    boolean isPrezzoValido(double p) { return p > 0; }
+    void setPrezzo(double prezzo) {
+        this.prezzo = isPrezzoValido(prezzo) ? prezzo : 0;
+    }
+    void applicaSconto(double perc) {
+        double nuovo = prezzo - prezzo * perc / 100;
+        if (isPrezzoValido(nuovo)) prezzo = nuovo;
+    }
 
-
-
+- Null-safe trick: "kg".equals(unit) (constant first) instead of
+  unit.equals("kg") never throws NullPointerException if unit is null.
 
 
 
