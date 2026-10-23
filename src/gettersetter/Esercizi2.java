@@ -40,6 +40,13 @@ public class Esercizi2 {
         System.out.println("Peso: " + w.getPeso());
         w.setPeso(0.01);
         System.out.println("Peso: " + w.getPeso());
+
+        Conto cc = new Conto();
+        cc.setAttivo(true);
+        System.out.println("Attivo? " + cc.isAttivo());
+        cc.setAttivo(false);
+        System.out.println("Attivo? " + cc.isAttivo());
+
     }    
 }
 class Dipendente {
@@ -119,5 +126,28 @@ class Porzione {
     }
     public double getPeso() { return peso; }
 }
+
+class Conto {
+    private boolean attivo;
+    public void setAttivo(boolean attivo) {
+            this.attivo = attivo;
+    }
+    public boolean isAttivo()  { return attivo; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
