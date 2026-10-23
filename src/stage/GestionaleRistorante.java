@@ -14,7 +14,23 @@ Tartare - disponibile? false
 
 public class GestionaleRistorante {
     public static void main(String[] args) {
+        Piatto p =  new Piatto("Guancette in umido", 31.85);
 
+        Piatto tartare = new Piatto("Tartare di Salmone Selvaggio", 45.50, false);
+        System.out.println(tartare.getNome() + " - disponibile? " + tartare.isDisponibile());
+
+        System.out.println(p.getNome() + " - disponibile? " + p.isDisponibile());
+        System.out.println("Prezzo con IVA: " + p.getPrezzoConIva());
+        System.out.println("Scontato 20%: " + p.scontato(20));
+        System.out.println("Scontato default: " +p.scontato());
+        p.setPrezzo(-5);
+        System.out.println("Prezzo dopo -5: " + p.getPrezzo());
+
+        System.out.println("Prima: " + p.getPrezzo());
+        p.applicaSconto(20);
+        System.out.println("Dopo applicaSconto(20): " + p.getPrezzo());
+
+        
     }
     
 }
@@ -78,6 +94,18 @@ class Piatto {
         System.out.println("ERRORE! Il nome deve contenere almeno un carattere");
     }
    }
+   public double getPrezzoConIva() {
+    return prezzo * 1.10;
+   }
+   public double scontato(double perc) {
+    return prezzo * (1 - perc / 100);
+   }
+   public double scontato() {
+    return scontato(10);
+   }
+   public void applicaSconto(double perc) {
+    this.prezzo = prezzo * (1 - perc / 100);
+       }
 }
 
 
