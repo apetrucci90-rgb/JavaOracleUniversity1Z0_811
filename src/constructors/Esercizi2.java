@@ -53,9 +53,9 @@ class Esercizi2 {
         Tavolo t2 = new Tavolo("Sala Argento", 18);
         Tavolo t3 = new Tavolo("Sala Crema");
 
-        System.out.println(t1.getZona() + ": " + t1.getCoperti() + "PAX");
-        System.out.println(t2.getZona() + ": " + t1.getCoperti() + "PAX");
-        System.out.println(t3.getZona() + ": " + t1.getCoperti() + "PAX");
+        System.out.println(t1.getZona() + ": " + t1.getCoperti() + " PAX");
+        System.out.println(t2.getZona() + ": " + t2.getCoperti() + " PAX");
+        System.out.println(t3.getZona() + ": " + t3.getCoperti() + " PAX");
         // ===============================================================
         // ALCOLOCICI, nome, gradi
         Alcolici a1 = new Alcolici("Weissen", 4.5);
@@ -97,7 +97,23 @@ class Esercizi2 {
         System.out.println(r2.getNome() + ": " + r2.getPorzioni() + " PAX");
         System.out.println(r3.getNome() + ": " + r3.getPorzioni() + " PAX");
         // =================================================================
-        // 
+        // SCORTA prodotto, pezzi
+        Scorta s1 = new Scorta("Polli", 100);
+        Scorta s2 = new Scorta("Costate", -150);
+        Scorta s3 = new Scorta("Merluzzi");
+
+        System.out.println(s1.getProdotto() + ": " + s1.getPezzi());
+        System.out.println(s2.getProdotto() + ": " + s2.getPezzi());
+        System.out.println(s3.getProdotto() + ": " + s3.getPezzi());
+        // =========================================================
+        // PIETANZA nome, calorie
+        Pietanza p1 = new Pietanza("Asiago", 550);
+        Pietanza p2 = new Pietanza("Branzino", -110);
+        Pietanza p3 = new Pietanza("Crostata");
+
+        System.out.println(p1.getNome() + ": " + p1.getCalorie() + " KCal");
+        System.out.println(p2.getNome() + ": " + p1.getCalorie() + " KCal");
+        System.out.println(p3.getNome() + ": " + p1.getCalorie() + " KCal");
 
     }
 }
