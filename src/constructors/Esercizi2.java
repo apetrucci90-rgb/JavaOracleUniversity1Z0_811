@@ -20,6 +20,8 @@ class Esercizi2 {
         - + ": " + -> concatena in un'unica stringa.
         - 
         */
+
+        // INGREDIENTE
         Ingrediente i1 = new Ingrediente("Farina", 2.85);
         Ingrediente i2 = new Ingrediente("Sale", -3);
         Ingrediente i3 = new Ingrediente("Zucchero");
@@ -27,9 +29,75 @@ class Esercizi2 {
         System.out.println(i1.getNome() + ": " + i1.getQuantita());
         System.out.println(i2.getNome() + ": " + i2.getQuantita());
         System.out.println(i3.getNome() + ": " + i3.getQuantita());
+        // ========================================================
+        // FORNITURE
+        Fornitore f1 = new Fornitore("CarniForniture", 9);
+        Fornitore f2 = new Fornitore("PesceAdriatico", -1);
+        Fornitore f3 = new Fornitore("MarketOk");
 
-        Fo
+        System.out.println(f1.getNome() + ": " + f1.getAffidabilita());
+        System.out.println(f2.getNome() + ": " + f2.getAffidabilita());
+        System.out.println(f3.getNome() + ": " + f3.getAffidabilita());
+        // ============================================================
+        // ORDINE
+        Ordine o1 = new Ordine("UKUKUKUK", 900.95);
+        Ordine o2 = new Ordine("ASASAAS", -49.55);
+        Ordine o3 = new Ordine("FGFGFG");
 
+        System.out.println(o1.getCodice() + ": " + o1.getTotale() + "€");
+        System.out.println(o2.getCodice() + ": " + o2.getTotale() + "€");
+        System.out.println(o3.getCodice() + ": " + o3.getTotale() + "€");
+        // ==============================================================
+        // TAVOLO
+        Tavolo t1 = new Tavolo("Sala 3", 10);
+        Tavolo t2 = new Tavolo("Sala Argento", 18);
+        Tavolo t3 = new Tavolo("Sala Crema");
+
+        System.out.println(t1.getZona() + ": " + t1.getCoperti() + "PAX");
+        System.out.println(t2.getZona() + ": " + t1.getCoperti() + "PAX");
+        System.out.println(t3.getZona() + ": " + t1.getCoperti() + "PAX");
+        // ===============================================================
+        // ALCOLOCICI, nome, gradi
+        Alcolici a1 = new Alcolici("Weissen", 4.5);
+        Alcolici a2 = new Alcolici("Vino Cannonau", 15);
+        Alcolici a3 = new Alcolici("Amaro Tavola", 35.5);
+        Alcolici a4 = new Alcolici("Cuore di Strega", 69.9);
+        Alcolici a5 = new Alcolici("Alcol Puro", 95);
+
+        System.out.println(a1.getNome() + ": " + a1.getGradi() + " % vol");
+        System.out.println(a2.getNome() + ": " + a2.getGradi() + " % vol");
+        System.out.println(a3.getNome() + ": " + a3.getGradi() + " % vol");
+        System.out.println(a4.getNome() + ": " + a4.getGradi() + " % vol");
+        System.out.println(a5.getNome() + ": " + a5.getGradi() + " % vol");
+        // ================================================================
+        // DIPENDENTE nome, stipendioMensile
+        Dipendente d1 = new Dipendente("Andrea", 12_000);
+        Dipendente d2 = new Dipendente("Alessia", -15_000);
+        Dipendente d3 = new Dipendente("Massimo");
+
+        System.out.println(d1.getNome() + ": " + d1.getStipendioMensile() + " €");
+        System.out.println(d2.getNome() + ": " + d2.getStipendioMensile() + " €");
+        System.out.println(d3.getNome() + ": " + d3.getStipendioMensile() + " €");
+        // =======================================================================
+        // ATTREZZO nome, prezzo
+        Attrezzo att1 = new Attrezzo("Planetaria X1000", 1500.95);
+        Attrezzo att2 = new Attrezzo("Mixer", -180.45);
+        Attrezzo att3 = new Attrezzo("Spatola");
+
+        System.out.println(att1.getNome() + ": " + att1.getPrezzo() + " €");
+        System.out.println(att2.getNome() + ": " + att2.getPrezzo() + " €");
+        System.out.println(att3.getNome() + ": " + att3.getPrezzo() + " €");
+        // =================================================================
+        // RICETTA nome, porzioni
+        Ricetta r1 = new Ricetta("Cavolo gratinato", 4);
+        Ricetta r2 = new Ricetta("Mayonnaise", -1000);
+        Ricetta r3 = new Ricetta("Salmone");
+
+        System.out.println(r1.getNome() + ": " + r1.getPorzioni() + " PAX");
+        System.out.println(r2.getNome() + ": " + r2.getPorzioni() + " PAX");
+        System.out.println(r3.getNome() + ": " + r3.getPorzioni() + " PAX");
+        // =================================================================
+        // 
 
     }
 }
