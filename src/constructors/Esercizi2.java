@@ -112,8 +112,8 @@ class Esercizi2 {
         Pietanza p3 = new Pietanza("Crostata");
 
         System.out.println(p1.getNome() + ": " + p1.getCalorie() + " KCal");
-        System.out.println(p2.getNome() + ": " + p1.getCalorie() + " KCal");
-        System.out.println(p3.getNome() + ": " + p1.getCalorie() + " KCal");
+        System.out.println(p2.getNome() + ": " + p2.getCalorie() + " KCal");
+        System.out.println(p3.getNome() + ": " + p3.getCalorie() + " KCal");
 
     }
 }
