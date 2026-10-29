@@ -85,12 +85,85 @@ public class RipassoModulo5 {
         System.out.println(pr2);
         System.out.println(pr3);
         System.out.println("Totale prodotti: " + Prodotto.totaleProdotti());
-
+        // ===============================================================
+        // 
 
     }    
 }
 
 class Ingrediente {
+    /*
+    1) I CAMPI
+    nome e prezzo sono i dati che ogni ingrediente porta con sè. Ogni volta
+    che faccio new Ingrediente(...) nasce un oggetto con il suo nome e il
+    suo prezzoAlKg: due ingredienti diversi hanno valori diversi,
+    indipendenti.
+    private è il cuore dell'incapsulamento: nessuno da fuori può falsificare
+    i campi come nome e prezzo. Al di fuori della classe non si vedono. 
+    Per toccarli devo passare dai metodi che ho deciso di aprire (getter/setter).
+    È questo che permette alla classe di difendere i suoi dati.
+    
+    2) IL CAMPO static
+    private static int totale;
+    I due campi sono uno per oggetto; totale è uno per tutta la classe,
+    condiviso da tutti gli Ingrediente. Appartiene alla classe Ingrediente.
+    Serve da contatore: lo uso per sapere quanti Ingrediente sono stati
+    creati. È un'informazione della classe.
+    
+    3) I DUE COSTRUTTORI (overloading + this(...))
+    Ingrediente(String nome, double prezzoAlKg) { // costruttore completo
+        this.nome = nome;
+        setPrezzoAlKg(prezzoAlKg);
+        totale++;
+    }
+    Ingrediente(String nome) { // costruttore ridotto
+        this(nome, 1.0);
+    }
+    DUE COSTRUTTORI, con lo stesso nome ma parametri diversi: OVERLOADING. 
+    Java capisce quali chiamare dal numero/tipo di argomenti che passo.
+    La riga this(nome, 1.0): il costruttore corto non ripete il lavoro,
+    chiama il costruttore lungo passandogli un prezzo di default. Questo 
+    è this(...) = "chiama un altro costruttore di questa classe". Deve stare
+    come prima istruzione del costruttore, SEMPRE.
+    - this.nome = nome -> this. serve a distinguire il campo nome dal 
+    parametro nome che ha lo stesso nome; senza this. assegnerei il 
+    parametro a sè stesso e il campo resterebbe vuoto.
+    - setPrezzoAlKg(prezzoAlKg) -> il costruttore NON assegna direttamente 
+    il prezzo, passa dal setter. Così la validazione vale anche in fase
+    di costruzione: non posso creare un ingrediente con prezzo negativo.
+    - totale++ nel costruttore -> ogni volta che nasce un oggetto, il 
+    contatore condiviso cresce di 1. È questo che fa funzionare il static.
+    
+    4) GETTER E SETTER (l'accesso controllato)
+    Il getter è la porta in uscita: restituisce il valore, le leggo ma 
+    non lo cambio. Il setter è la porta in entrata: è il solo modo per
+    modificare il campo da fuori. Se i campi fossero pubblici, uno 
+    potrebbe scavalcare il setter e mettere valori incoerenti.
+
+    5) IL METODO static
+    static int quantiIngredienti() { return totale; }
+    È static perchè risponde ad una domanda della classe, non del singolo
+    oggetto. Per questo lo chiamo sulla classe.
+    Un metodo static non può toccare i campi d'istanza nè usare this. 
+    
+    6) toString()
+    public String toString() {
+        return nome + " - " + prezzoAlKg + " euro/kg";
+    }
+    Questo è un metodo speciale: Java lo chiama in automatico ogni volta 
+    che un oggetto finisce in una stampa (System.out.println(i1)) o in una
+    concatenazione di stringhe. Senz stamperebbe qualcosa di inutile tipo:
+    Ingrediente@7a81197d. Lo sto sovrascrivendo da Object (override).
+
+    ----------------------------------------------------------------------
+    IL QUADRO DI INSIEME
+    Questa classe è un oggetto che si auto-difende: tiene i dati nascosti
+    (private), li lascia leggere a tutti (getter), ma li lascia cambiare
+    solo rispettando le sue regole (setter con if). Nasce in modo 
+    flessibile (due costruttori), tiene il conto di quanti ne esistono (static)
+    e si autodescrive (toString).
+
+    */
     private String nome;
     private double prezzoAlKg;
     private static int totale; // static: uno solo per tutta la classe
@@ -100,7 +173,7 @@ class Ingrediente {
         setPrezzoAlKg(prezzoAlKg);
         totale++;
     }
-    Ingrediente(String nome) {
+    Ingrediente(String nome) { // costruttore ridotto
         this(nome, 1.0);
     }
 
