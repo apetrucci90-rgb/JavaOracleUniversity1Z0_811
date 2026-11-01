@@ -86,7 +86,52 @@ public class RipassoModulo5 {
         System.out.println(pr3);
         System.out.println("Totale prodotti: " + Prodotto.totaleProdotti());
         // ===============================================================
-        // 
+        // MENU
+        Menu m1 = new Menu("Degustazione", 25.50);
+        Menu m2 = new Menu("Pranzo");
+        Menu m3 = new Menu(3.85);
+        Menu m4 = new Menu(0);
+
+        m4.setCoperto(5.65);
+
+        System.out.println(m1);
+        System.out.println(m2);
+        System.out.println(m3);
+        System.out.println(m4);
+        System.out.println("Totale coperti: " + Menu.totaleCoperti());
+
+        // ================================================================
+        // PRENOTAZIONE
+
+        Prenotazione book1 = new Prenotazione("Petrucci", "AB12");
+        Prenotazione book2 = new Prenotazione("Trevisan");
+        Prenotazione book3 = new Prenotazione("Meda", "AB1");
+        Prenotazione book4 = new Prenotazione("Trentin");
+
+        book4.setCodice("AB15");
+
+        System.out.println(book1);
+        System.out.println(book2);
+        System.out.println(book3);
+        System.out.println(book4);
+        System.out.println("Totale prenotazioni: " + Prenotazione.totalePrenotazioni());
+
+        // ================================================================
+        // SCONTRINO
+
+        Scontrino s1 = new Scontrino("Fattura f1", 22.5);
+        Scontrino s2 = new Scontrino("Fattura f2");
+        Scontrino s3 = new Scontrino("Fattura f3", -15);
+        Scontrino s4 = new Scontrino("Fattura f4", 35);
+
+        s4.setSconto(18.9);
+
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
+        System.out.println("Totale scontrini: " + Scontrino.totaleScontrini());
+
 
     }    
 }
@@ -357,11 +402,88 @@ class Prodotto {
     }
 }
 
+class Menu {
+    private String nome;
+    double coperto;
+    private static int totale;
 
+    Menu(String nome, double coperto) {
+        this.nome = nome;
+        setCoperto(coperto);
+        totale++;
+    }
+    Menu(String nome) {
+        this(nome, 2.50);
+    }
+    Menu(double coperto) {
+        setCoperto(coperto);
+    }
 
+    public String getNome() { return nome; }
+    public double getCoperto() { return coperto; }
+    public void setCoperto(double coperto) {
+        if  (coperto >= 0) {
+            this.coperto = coperto;
+        }
+    }
+    static int totaleCoperti() { return totale; }
+    public String toString() {
+        return nome + " - Coperto: " + coperto + " euro.";
+    }
+}
 
+class Prenotazione {
+    private String nome;
+    private String codice;
+    private static int totale;
 
+    Prenotazione(String nome, String codice) {
+        this.nome = nome;
+        this.codice = codice;
+        totale++;
+    }
+    Prenotazione(String nome) {
+        this(nome, "N/A");
+    }
+    
+    public String getNome() { return nome; }
+    public String getCodice() { return codice; }
+    public void setCodice(String codice) {
+        if (codice.length() >= 4) {
+            this.codice = codice;
+        }
+    }
+    static int totalePrenotazioni() { return totale; }
+    public String toString() {
+        return nome + " - Codice: " + codice;
+    }
+}
 
+class Scontrino {
+    private String nome;
+    private double sconto;
+    private static int totale;
+
+    Scontrino(String nome, double sconto) {
+        this.nome = nome;
+        setSconto(sconto);
+        totale++;
+    }
+    Scontrino(String nome) {
+        this(nome, 0.0);
+    }
+    public String getNome() { return nome; }
+    public double getSconto() { return sconto; }
+    public void setSconto(double sconto) {
+        if (sconto >= 0 && sconto <= 100) {
+            this.sconto = sconto;
+        }
+    }
+    static int totaleScontrini() { return totale; }
+    public String toString() {
+        return nome + " - Sconto: " + sconto + " %";
+    }
+}
 
 
 
