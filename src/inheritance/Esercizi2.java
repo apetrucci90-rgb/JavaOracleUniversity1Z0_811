@@ -1,55 +1,118 @@
 package inheritance;
 
-/*
- ============================================================================
-  ESERCIZIO 2 - RIPASSO PRATICO MODULO 6.1 (Inheritance)
- ============================================================================
-  Ripasso di quello fatto finora: extends, protected, super(...),
-  @Override, super.metodo(), polimorfismo, test is-a / has-a.
-  (Niente 6.2: toString/equals/hashCode di Object arrivano dopo.)
+class MezzoConsegna {
+  protected String targa;
+  protected int kmPercorsi;
 
-  Modello gia' svolto a cui ispirarti: Esercizio1Piatto (Piatto -> Pizza).
-  Dominio nuovo per non copiare: i MEZZI DI CONSEGNA del ristorante.
-
-  --------------------------------------------------------------------------
-  COSA DEVI REALIZZARE (obiettivi, non codice)
-  --------------------------------------------------------------------------
-   1. UN PADRE "mezzo di consegna"
-      - due dati comuni a ogni mezzo (es. un'identita' e un numero), tenuti
-        in modo che i FIGLI possano leggerli direttamente (scegli tu la
-        visibilita' giusta: ripassa perche').
-      - NESSUN costruttore senza argomenti: solo quello che riceve i due dati.
-      - un metodo che descrive il mezzo a parole.
-
-   2. DUE FIGLI, ciascuno un tipo diverso di mezzo
-      - ognuno aggiunge UN proprio dato in piu' che il padre non ha.
-      - ognuno nel costruttore deve far partire la parte ereditata (ragiona
-        su quale deve essere la prima istruzione e perche' e' obbligatoria qui).
-      - ognuno ridefinisce la descrizione: NON riscrivere da capo, riusa la
-        descrizione del padre e aggiungici solo la parte sua.
-
-   3. NEL main - POLIMORFISMO
-      - crea un padre "puro" e un oggetto per ciascuno dei due figli.
-      - mettili tutti in UN contenitore dichiarato del tipo del PADRE.
-      - scorrilo con un ciclo e stampa ognuno: ciascuno deve uscire con la
-        PROPRIA descrizione, senza che tu chieda di che tipo e'.
-
-   4. is-a VS has-a (in un commento, a parole)
-      - spiega perche' "il Ristorante HA dei mezzi" NON si modella con
-        l'ereditarieta', mentre "un Furgone E' un mezzo" si'.
-
-  --------------------------------------------------------------------------
-  Quando hai finito: compila, esegui, controlla che le 3 stampe siano
-  ciascuna quella giusta. Poi committa.
- ============================================================================
-*/
-
-public class Esercizi2 {
-    public static void main(String[] args) {
-
-        // Svolgi qui: crea gli oggetti, mettili nel contenitore, stampali.
-
-    }
+  MezzoConsegna(String targa, int kmPercorsi) {
+    this.targa = targa;
+    this.kmPercorsi = kmPercorsi;
+  }
+  String descrizione() {
+    return "Targa: " + targa + " | Km Percorsi: " + kmPercorsi;
+  }
 }
 
-// Scrivi qui sotto il padre e i due figli.
+class MezzoCostruzione {
+  protected String nome;
+  protected int oreLavoro;
+
+  MezzoCostruzione(String nome, int oreLavoro) {
+    this.nome = nome;
+    this.oreLavoro = oreLavoro;
+  }
+  String descrizione() {
+    return "Nome: " + nome + " | Ore lavorate: " + oreLavoro;
+  }
+}
+
+
+
+
+class Furgone extends MezzoConsegna {
+  private double portataKg;
+
+  Furgone(String targa, int kmPercorsi, double portataKg) {
+    super(targa, kmPercorsi);
+    this.portataKg = portataKg;
+  }
+  @Override
+  public String descrizione() {
+    return super.descrizione() + " | Portata in KG: " + portataKg; 
+  }
+  public boolean daRevisione() {
+    return kmPercorsi > 20_000;
+  }
+}
+
+class Scooter extends MezzoConsegna {
+  private int cilindrata;
+
+  Scooter(String targa, int kmPercorsi, int cilindrata) {
+    super(targa, kmPercorsi);
+    this.cilindrata = cilindrata;
+  }
+  @Override
+  public String descrizione() {
+    return super.descrizione() + " | Cilindrata: " + cilindrata;
+  }
+  public boolean daRevisione() {
+    return kmPercorsi >= 10_000;
+  }
+}
+
+class FurgoneUso extends Furgone {
+  private String utilizzo;
+
+  FurgoneUso(String targa, int kmPercorsi, double portataKg, String utilizzo) {
+    super(targa, kmPercorsi, portataKg);
+    this.utilizzo = utilizzo;
+  }
+  @Override
+  public String descrizione() {
+    return super.descrizione() + " | Usato per: " + utilizzo;
+  }
+}
+
+
+
+public class Esercizi2 {
+  public static void main(String[] args) {
+
+    MezzoConsegna mc1 = new MezzoConsegna("YY5467WU", 15_000);
+    MezzoCostruzione mcos1 = new MezzoCostruzione("Gru", 1500);
+    Furgone f1 = new Furgone("WW675II", 18_000, 5000);
+    System.out.println("Da revisionare: " + f1.daRevisione());
+    Scooter s1 = new Scooter("AA980BB", 10_000, 500);
+    System.out.println("Da revisionare: " + s1.daRevisione());
+    FurgoneUso fu1 = new FurgoneUso("AC123AC", 100_000, 15_000, "Alimenti");
+    
+
+
+    MezzoConsegna[] flotta = { mc1, f1, s1, fu1};
+    for (MezzoConsegna m : flotta) {
+      System.out.println(m.descrizione());
+
+      /*
+      Il for-each legge e usa ogni elemento (anche chiamando
+      metodi sugli oggetti), ma non dà l'indice, non va
+      all'indietro e non può rimpiazzare gli elementi.
+      Per queste tre cose si usa il for classico.
+      */
+    }
+
+    MezzoCostruzione[] squadra = { mcos1};
+    for (MezzoCostruzione c : squadra) {
+      System.out.println(c.descrizione());
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
