@@ -133,6 +133,32 @@ class FurgoneRefrigerato extends Furgone {
   }
 }
 
+class Scavatrice extends MezzoCostruzione {
+  private double pesoTon;
+  
+  Scavatrice(String nome, int oreLavoro, double pesoTon) {
+    super(nome, oreLavoro);
+    this.pesoTon = pesoTon;
+  }
+  @Override
+  public String descrizione() {
+    return super.descrizione() + " | Peso in tonellate: " + pesoTon;
+  }
+}
+
+class Betoniera extends MezzoCostruzione {
+  private int litriCarico;
+
+  Betoniera(String nome, int oreLavoro, int litriCarico) {
+    super(nome, oreLavoro);
+    this.litriCarico = litriCarico;
+  }
+  @Override
+  public String descrizione() {
+    return super.descrizione() + " | Carico tot. in l: " + litriCarico;
+  }
+}
+
 
 
 public class Esercizi2 {
@@ -146,6 +172,10 @@ public class Esercizi2 {
     Bicicletta b1 = new Bicicletta("AA456BB", 7_800, "Mountain Bike");
     AutoElettrica ae1 = new AutoElettrica("TT777TT", 120_000, 3000);
     FurgoneRefrigerato fr1 = new FurgoneRefrigerato("FF222FF", 14_000, 1000, 3.9);
+
+    Betoniera mcb1 = new Betoniera("Betoniera", 100, 15_000);
+    Scavatrice mcs1 = new Scavatrice("Scavatrice", 140, 1000);
+
 
     System.out.println(f1);
     System.out.println(fr1);
@@ -178,7 +208,7 @@ public class Esercizi2 {
     System.out.println("Da revisionare: " + quanti + " mezzi, costo totale: " +
       totale + " euro");
     
-    MezzoCostruzione[] squadra = { mcos1};
+    MezzoCostruzione[] squadra = { mcos1, mcb1, mcs1};
     for (MezzoCostruzione c : squadra) {
       System.out.println(c.descrizione());
     }
