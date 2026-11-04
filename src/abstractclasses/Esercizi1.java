@@ -249,8 +249,5 @@ public class Esercizi1 {
             totale += ft.area();
         }
         System.out.println("Area totale:  " + totale);
-
-
-    
     }
 }
