@@ -114,23 +114,131 @@ class TriangoloEquilatero extends Figura {
     }
 }
 
+class Rombo extends Figura {
+    private double diag1;
+    private double diag2;
+    private double lato;
 
+    Rombo(double diag1, double diag2, double lato) {
+        super("Rombo");
+        this.diag1 = diag1;
+        this.diag2 = diag2;
+        this.lato = lato;
+    }
+    @Override
+    public double area() {
+        return (diag1 * diag2) / 2;
+    }
+    @Override
+    public double perimetro() {
+        return lato * 4;
+    }
+}
 
+class Parallelogramma extends Figura {
+    private double base;
+    private double altezza;
+    private double latoObliquo;
+    
+    Parallelogramma(double base, double altezza, double latoObliquo) {
+        super("Parallelogramma");
+        this.base = base;
+        this.altezza = altezza;
+        this.latoObliquo = latoObliquo;
+    }
+    @Override
+    public double area() {
+        return base * altezza;
+    }
+    @Override
+    public double perimetro() {
+        return (base + latoObliquo) * 2;
+    }
+}
 
+class Trapezio extends Figura {
+    private double baseMag;
+    private double baseMin;
+    private double altezza;
+    private double lato1;
+    private double lato2;
 
+    Trapezio(double baseMag, double baseMin, double altezza,
+        double lato1, double lato2) {
+            super("Trapezio");
+            this.baseMag = baseMag;
+            this.baseMin = baseMin;
+            this.altezza = altezza;
+            this.lato1 = lato1;
+            this.lato2 = lato2;
+    }
+    @Override 
+    public double area() {
+        return (baseMag + baseMin) * altezza / 2;
+    }
+    @Override
+    public double perimetro() {
+        return baseMag + baseMin + lato1 + lato2;
+    }
+}
 
+class PentagonoRegolare extends Figura {
+    private double lato;
+    private double apotema;
 
+    PentagonoRegolare(double lato, double apotema) {
+        super("Pentagono Regolare");
+        this.lato = lato;
+        this.apotema = apotema;
+    }
+    @Override
+    public double perimetro() {
+        return lato * 5;
+    }
+    @Override
+    public double area() {
+        return perimetro() * apotema / 2;
+    }
+}
 
+class EsagonoRegolare extends Figura {
+    private double lato;
+    private double apotema;
 
-
-
-
-
-
-
-
+    EsagonoRegolare(double lato, double apotema) {
+        super("Esagono Regolare");
+        this.lato = lato;
+        this.apotema = apotema;
+    }
+    @Override
+    public double perimetro() {
+        return lato * 6;
+    }
+    @Override
+    public double area() {
+        return perimetro() * apotema / 2;
+    }
+}
 
 
 public class Esercizi1 {
-    
+    public static void main(String[] args) {
+        // Figura f1 = new Figura("test");
+
+        Figura[] figure = {
+        new Cerchio(5),
+        new Quadrato(6),
+        new Rettangolo(9, 3),
+        new TriangoloRettangolo(3, 7),
+        new TriangoloEquilatero(8),
+        new Rombo(3, 4, 5),
+        new Parallelogramma(4, 6, 8),
+        new Trapezio(8, 5, 15, 4, 4),
+        new PentagonoRegolare(4, 6),
+        new EsagonoRegolare(5, 8)
+        };
+    }
+    for (Figura f : figure) {
+        System.out.println()
+    } 
 }
