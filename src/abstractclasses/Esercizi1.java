@@ -224,6 +224,8 @@ class EsagonoRegolare extends Figura {
 public class Esercizi1 {
     public static void main(String[] args) {
         // Figura f1 = new Figura("test");
+        // ERRORE: Figura is abstract; cannot be instantiated
+
 
         Figura[] figure = {
         new Cerchio(5),
@@ -237,8 +239,18 @@ public class Esercizi1 {
         new PentagonoRegolare(4, 6),
         new EsagonoRegolare(5, 8)
         };
+
+        for (Figura f : figure) {
+        System.out.println(f.descrizione());
+        }
+
+        double totale = 0;
+        for (Figura ft : figure) {
+            totale += ft.area();
+        }
+        System.out.println("Area totale:  " + totale);
+
+
+    
     }
-    for (Figura f : figure) {
-        System.out.println()
-    } 
 }
