@@ -3,7 +3,8 @@ EXCPETIONS
 Un'eccezione è il modo con cui Java segnala che qualcosa è andato storto durante l'esecuzione. Quando succede, Java crea un oggetto-errore (type + messaggio + stack trace) e interrompe il flusso nel ponte del guasto, cercando chi lo gestisce.
 
 A cosa servono?
-1) Non far crashare il programma. Invece di bloccarsi, intercetto il problema e reagisco: mostro un messaggio, uso un valore di riepilogo, riprovo.
+1) Non far crashare il programma. Invece di bloccarsi, intercetto il problema e reagisco: mostro un messaggio, uso un valore di ripiego, riprovo.
+
 2) Separare il va bene dal va storto. Il codice normale sta nel try, pulito e leggibile; tutta la gestione dell'errore sta nel catch. Senza eccezioni dovrei inserire ogni riga con controlli if.
 3) Passare la responsabilità a chi sa gestirla. Con throws, il metodo dove nasce l'errore non è obbligato a risolverlo: lo rilancia verso l'alto, fino a quando un metodo più adatto lo cattura. Chi legge un file non deve decidere cosa fare se manca, lo decide chi l'ha chiamato.
 4) Garantire la pulizia. Il finally chiude file e tutto con o senza errore, così non restano cose aperte.
