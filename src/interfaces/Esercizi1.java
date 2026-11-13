@@ -13,7 +13,7 @@ qualcun'altro manterrà
 interface Pagabile {
 
     /*
-    Firma del metodo (method signatura), niente corpo: 
+    Firma del metodo (method signature), niente corpo: 
     solo ;.
     E' implicitamente 'public abstract' -  non serve 
     scriverlo in un interface. Chiunque sia pagabile deve
