@@ -13,6 +13,11 @@ public class Esercizi4 {
     .sleep(...) -> chiama il metodo sleep che appartiene a Thread. E' lo stesso
         meccanismo di System.out.print(...) = nome.metodo(...)
 
+    Una checked come InterruptedException deve essere fermata ad ogni piano
+    che attraversa, in due modi:
+        1) la catturo con try / catch
+        2) la dichiaro con throws
+        
     
     */
     static void attendi(int ms) throws InterruptedException {
