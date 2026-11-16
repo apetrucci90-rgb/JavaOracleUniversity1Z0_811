@@ -165,7 +165,7 @@ ________________________________________________________________________________
 IL TERMINALE È SEMPRE "DENTRO" AD UNA CARTELLA
 Il terminale è come Esplora File, ma senza icone: in ogni momento ti trovi dentro una cartella e quale sia te lo dice la riga prima del cursore:
 
-PS C:\Users\apetr\...\JavaOracleUniversity1Z0_811>
+PS ...\JavaOracleUniversity1Z0_811>
 Tutto quello che scrivi, il terminale, lo cerca a partire da lì.
 
 cd = change directory (cambia cartella). È come fare doppio clic su una cartella in Esplora File. 
@@ -173,7 +173,7 @@ cd src -> entra in una cartella
 cd.. -> torna indietro di una cartella
 
 Dopo cd src la riga diventa:
-PS C:\Users\apetr\...\JavaOracleUniversity1Z0_811\src>
+PS ...\JavaOracleUniversity1Z0_811\src>
 Adesso sono dentro a src
 
 Il comando javac asimplejavaapplication\Ordine.java dice: a partire da dove sono, entra in asimplejavaapplication e compila Ordine.java.
